@@ -1,15 +1,11 @@
 const httpStatus = require('http-status');
-const { Op } = require('sequelize')
+const models = require('../models');
+
 const {
-    compact, map, sumBy, uniq,
-  } = require('lodash');
-const moment = require('moment');
-const models = require('../models')
-const{
   User,
   Role,
   UserRoleMapping,
-} = models
+} = models;
 /**
  * List Active UserRoleMapping
  * @public
@@ -17,12 +13,12 @@ const{
 exports.listAllUserRoleMapping = async (req, res, next) => {
   try {
     const data = await UserRoleMapping.findAll({
-        include: [{ 
-            model: User, 
-        },{
-        model: Role
-    }]
-    })
+      include: [{
+        model: User,
+      }, {
+        model: Role,
+      }],
+    });
     return res.json({ code: httpStatus.OK, message: 'All the active UserRoleMapping fetched succssfully', data });
   } catch (error) {
     return next(error);
@@ -37,8 +33,8 @@ exports.createUserRoleMapping = async (req, res, next) => {
   try {
     const data = await UserRoleMapping.create({
       user: req.body.user,
-      role: req.body.role
-    })
+      role: req.body.role,
+    });
     return res.json({ code: httpStatus.OK, message: 'UserRoleMapping Created succssfully', data });
   } catch (error) {
     return next(error);
@@ -53,13 +49,12 @@ exports.updateUserRoleMapping = async (req, res, next) => {
   try {
     const data = await UserRoleMapping.update({
       user: req.body.user,
-      role: req.body.role
-    },{
-      where: { id : req.query.id }
-    })
-    if(data > 0 )
-    return res.json({ code: httpStatus.OK, message: req.body.inDepartment === "" ? 'UserRoleMapping details Updated succssfully' : 'UserRoleMapping details Updated and moved succssfully' });
-    return res.json({ code: httpStatus.OK, message: 'No UserRoleMapping found with this ID'});
+      role: req.body.role,
+    }, {
+      where: { id: req.query.id },
+    });
+    if (data > 0) return res.json({ code: httpStatus.OK, message: req.body.inDepartment === '' ? 'UserRoleMapping details Updated succssfully' : 'UserRoleMapping details Updated and moved succssfully' });
+    return res.json({ code: httpStatus.OK, message: 'No UserRoleMapping found with this ID' });
   } catch (error) {
     return next(error);
   }
@@ -72,14 +67,13 @@ exports.updateUserRoleMapping = async (req, res, next) => {
 exports.deleteUserRoleMapping = async (req, res, next) => {
   try {
     const data = await UserRoleMapping.update({
-      archived: true
-    },{
-      where: { id : req.query.id }
-    })
-    if(data > 0)
-    return res.json({ code: httpStatus.OK, message: 'UserRoleMapping Deleted succssfully'});
+      archived: true,
+    }, {
+      where: { id: req.query.id },
+    });
+    if (data > 0) return res.json({ code: httpStatus.OK, message: 'UserRoleMapping Deleted succssfully' });
 
-    return res.json({ code: httpStatus.OK, message: 'No UserRoleMapping found with this ID'});
+    return res.json({ code: httpStatus.OK, message: 'No UserRoleMapping found with this ID' });
   } catch (error) {
     return next(error);
   }
@@ -90,15 +84,15 @@ exports.deleteUserRoleMapping = async (req, res, next) => {
  * @public
  */
 exports.listUserRoleMapping = async (req, res, next) => {
-    try {
-      const data = await UserRoleMapping.findAll({
-          where: {user: req.query.user},
-          include: [{
-          model: Role
-      }]
-      })
-      return res.json({ code: httpStatus.OK, message: 'All the active UserRoleMapping fetched succssfully', data });
-    } catch (error) {
-      return next(error);
-    }
-  };
+  try {
+    const data = await UserRoleMapping.findAll({
+      where: { user: req.query.user },
+      include: [{
+        model: Role,
+      }],
+    });
+    return res.json({ code: httpStatus.OK, message: 'All the active UserRoleMapping fetched succssfully', data });
+  } catch (error) {
+    return next(error);
+  }
+};

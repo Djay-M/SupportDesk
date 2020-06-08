@@ -25,7 +25,7 @@ router
    */
   .get(controller.listRole);
 
-  router
+router
   .route('/createrole')
   /**
    * @api {post} Create Role
@@ -44,7 +44,7 @@ router
    */
   .post(controller.createRole);
 
-  router
+router
   .route('/updaterole')
   /**
    * @api {post} Update Role
@@ -63,7 +63,7 @@ router
    */
   .post(controller.updateRole);
 
-  router
+router
   .route('/deleterole')
   /**
    * @api {post} Delete Role
@@ -80,6 +80,6 @@ router
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
    */
-  .post(controller.deleteRole );
+  .post(controller.deleteRole);
 
-  module.exports = router;
+module.exports = router;

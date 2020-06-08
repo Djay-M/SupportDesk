@@ -25,7 +25,7 @@ router
    */
   .get(controller.listTicket);
 
-  router
+router
   .route('/createticket')
   /**
    * @api {post} Create Ticket
@@ -44,7 +44,7 @@ router
    */
   .post(controller.createTicket);
 
-  router
+router
   .route('/updateticket')
   /**
    * @api {post} Update Ticket
@@ -52,7 +52,7 @@ router
    * @apiVersion 1.0.0
    * @apiName Active
    * @apiGroup Ticket
-   * @apiPermission Admin, 
+   * @apiPermission Admin,
    *
    * @apiHeader {String} Authorization  User's access token
    *
@@ -63,7 +63,7 @@ router
    */
   .post(controller.updateTicket);
 
-  router
+router
   .route('/deleteticket')
   /**
    * @api {post} Delete Ticket
@@ -80,9 +80,9 @@ router
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
    */
-  .post(controller.deleteTicket );
+  .post(controller.deleteTicket);
 
-  router
+router
   .route('/deptticket')
   /**
    * @api {get} List All Open Ticket in a Department
@@ -101,7 +101,7 @@ router
    */
   .get(controller.listDepartmentTickets);
 
-  router
+router
   .route('/moveticket')
   /**
    * @api {post} Change ticket's department
@@ -120,7 +120,7 @@ router
    */
   .post(controller.moveTicket);
 
-  router
+router
   .route('/ticketsforuser')
   /**
    * @api {get} List all Open tickets assigned to a user
@@ -139,7 +139,7 @@ router
    */
   .get(controller.listAllticketsForUser);
 
-  router
+router
   .route('/ticketscommentedbyuser')
   /**
    * @api {get} List all tickets commented by a user
@@ -158,7 +158,7 @@ router
    */
   .get(controller.listAllticketsCommentedbyUser);
 
-  router
+router
   .route('/searchticket')
   /**
    * @api {post} Search a ticket by title or ticketNo
@@ -177,4 +177,4 @@ router
    */
   .get(controller.searchTicket);
 
-  module.exports = router;
+module.exports = router;

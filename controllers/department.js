@@ -1,21 +1,16 @@
 const httpStatus = require('http-status');
-const { Op } = require('sequelize')
+const models = require('../models');
+
 const {
-    compact, map, sumBy, uniq,
-  } = require('lodash');
-const moment = require('moment');
-const models = require('../models')
-const{
-  User,
   Department,
-} = models
+} = models;
 /**
  * List Active Department
  * @public
  */
 exports.listDepartment = async (req, res, next) => {
   try {
-    const department = await Department.findAll({ where: { archived: false }})
+    const department = await Department.findAll({ where: { archived: false } });
     return res.json({ code: httpStatus.OK, message: 'All the active Department fetched succssfully', department });
   } catch (error) {
     return next(error);
@@ -31,7 +26,7 @@ exports.createDepartment = async (req, res, next) => {
     const department = await Department.create({
       name: req.body.name,
       description: req.body.description,
-    })
+    });
     return res.json({ code: httpStatus.OK, message: 'Department Created succssfully', department });
   } catch (error) {
     return next(error);
@@ -45,14 +40,13 @@ exports.createDepartment = async (req, res, next) => {
 exports.updateDepartment = async (req, res, next) => {
   try {
     const department = await Department.update({
-        name: req.body.name,
-        description: req.body.description,
-    },{
-      where: { id : req.query.id }
-    })
-    if(department > 0)
-    return res.json({ code: httpStatus.OK, message: 'Department details Updated succssfully'});
-    return res.json({ code: httpStatus.OK, message: 'No Department found with this ID'});
+      name: req.body.name,
+      description: req.body.description,
+    }, {
+      where: { id: req.query.id },
+    });
+    if (department > 0) return res.json({ code: httpStatus.OK, message: 'Department details Updated succssfully' });
+    return res.json({ code: httpStatus.OK, message: 'No Department found with this ID' });
   } catch (error) {
     return next(error);
   }
@@ -65,14 +59,13 @@ exports.updateDepartment = async (req, res, next) => {
 exports.deleteDepartment = async (req, res, next) => {
   try {
     const department = await Department.update({
-      archived: true
-    },{
-      where: { id : req.query.id }
-    })
-    if(department > 0)
-    return res.json({ code: httpStatus.OK, message: 'Department Deleted succssfully'});
+      archived: true,
+    }, {
+      where: { id: req.query.id },
+    });
+    if (department > 0) return res.json({ code: httpStatus.OK, message: 'Department Deleted succssfully' });
 
-    return res.json({ code: httpStatus.OK, message: 'No Department found with this ID'});
+    return res.json({ code: httpStatus.OK, message: 'No Department found with this ID' });
   } catch (error) {
     return next(error);
   }

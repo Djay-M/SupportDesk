@@ -18,14 +18,14 @@ router
    *
    * @apiHeader {String} Authorization  User's access token
    *
-   * @apiSuccess {Array}  userDepartmentMapping 
+   * @apiSuccess {Array}  userDepartmentMapping
    *
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
    */
   .get(controller.listUserDepartmentMapping);
 
-  router
+router
   .route('/createuserdept')
   /**
    * @api {post} Provide Access For a Department To a User
@@ -37,14 +37,14 @@ router
    *
    * @apiHeader {String} Authorization  User's access token
    *
-   * @apiSuccess {Array}  userDepartmentMapping 
+   * @apiSuccess {Array}  userDepartmentMapping
    *
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
    */
   .post(controller.createUserDepartmentMapping);
 
-  router
+router
   .route('/updateuserdept')
   /**
    * @api {post} Update User's access to a Department
@@ -56,14 +56,14 @@ router
    *
    * @apiHeader {String} Authorization  User's access token
    *
-   * @apiSuccess {Array}  userDepartmentMapping 
+   * @apiSuccess {Array}  userDepartmentMapping
    *
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
    */
   .post(controller.updateUserDepartmentMapping);
 
-  router
+router
   .route('/deleteuserdept')
   /**
    * @api {post} Delete User's access to a Department
@@ -75,15 +75,15 @@ router
    *
    * @apiHeader {String} Authorization  User's access token
    *
-   * @apiSuccess {Array}  userDepartmentMapping 
+   * @apiSuccess {Array}  userDepartmentMapping
    *
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
    */
   .post(controller.deleteUserDepartmentMapping);
-  
+
 router
-.route('/listuserdept')
+  .route('/listuserdept')
 /**
  * @api {get} List All Active Users in a Department
  * @apiDescription List All Active Users in a Department
@@ -99,10 +99,10 @@ router
  * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
  * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
  */
-.get(controller.listusersInDepartment);
+  .get(controller.listusersInDepartment);
 
 router
-.route('/listdeptforuser')
+  .route('/listdeptforuser')
 /**
  * @api {get} List All Active Department For a User
  * @apiDescription List All Active Department For a User
@@ -118,6 +118,6 @@ router
  * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
  * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
  */
-.get(controller.listAllDepartemtForUser);
+  .get(controller.listAllDepartemtForUser);
 
-  module.exports = router;
+module.exports = router;

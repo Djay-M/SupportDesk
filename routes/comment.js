@@ -9,7 +9,7 @@ const router = express.Router();
 router
   .route('/listcomment')
   /**
-   * @api {get} List ALl Comment 
+   * @api {get} List ALl Comment
    * @apiDescription List Active Comment
    * @apiVersion 1.0.0
    * @apiName Active
@@ -25,7 +25,7 @@ router
    */
   .get(controller.listComment);
 
-  router
+router
   .route('/createcomment')
   /**
    * @api {post} Create Comment For a Ticket
@@ -44,7 +44,7 @@ router
    */
   .post(controller.createComment);
 
-  router
+router
   .route('/updatecomment')
   /**
    * @api {post} Update Comment
@@ -63,7 +63,7 @@ router
    */
   .post(controller.updateComment);
 
-  router
+router
   .route('/deletecomment')
   /**
    * @api {post} Delete Comment
@@ -80,6 +80,6 @@ router
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only Admin can access the data
    */
-  .post(controller.deleteComment );
+  .post(controller.deleteComment);
 
-  module.exports = router;
+module.exports = router;

@@ -25,7 +25,7 @@ router
    */
   .get(controller.listDepartment);
 
-  router
+router
   .route('/createdepartment')
   /**
    * @api {post} Create Department
@@ -44,7 +44,7 @@ router
    */
   .post(controller.createDepartment);
 
-  router
+router
   .route('/updatedepartment')
   /**
    * @api {post} Update Department
@@ -63,7 +63,7 @@ router
    */
   .post(controller.updateDepartment);
 
-  router
+router
   .route('/deletedepartment')
   /**
    * @api {post} Delete Department
@@ -83,4 +83,4 @@ router
   .post(controller.deleteDepartment);
 
 
-  module.exports = router;
+module.exports = router;

@@ -1,60 +1,59 @@
-'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-const User = sequelize.define("User", {
+  const User = sequelize.define('User', {
     id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
+      type: DataTypes.UUID,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
     },
     firstname: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     lastname: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     mongoID: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
     },
     phone: {
-        type: DataTypes.STRING(10),
-        allowNull: true,
+      type: DataTypes.STRING(10),
+      allowNull: true,
     },
     createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      createdby: {
-        type: DataTypes.STRING,
-      },
-      archived: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    createdby: {
+      type: DataTypes.STRING,
+    },
+    archived: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     archivedBy: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-}, {
-  tableName: 'User',
-  freezeTableName: true,
-});
-  User.associate = function(models) {
-    User.hasMany(models.Ticket, { foreignKey: 'assignedTo'})
-    User.hasMany(models.Ticket, { foreignKey: 'createdby'})
-    User.hasMany(models.Ticket, { foreignKey: 'archivedBy'})
-    User.hasMany(models.UserDepartmentMapping, { foreignKey: 'user' })
-    User.hasMany(models.UserRoleMapping, { foreignKey: 'user' })
+  }, {
+    tableName: 'User',
+    freezeTableName: true,
+  });
+  User.associate = (models) => {
+    User.hasMany(models.Ticket, { foreignKey: 'assignedTo' });
+    User.hasMany(models.Ticket, { foreignKey: 'createdby' });
+    User.hasMany(models.Ticket, { foreignKey: 'archivedBy' });
+    User.hasMany(models.UserDepartmentMapping, { foreignKey: 'user' });
+    User.hasMany(models.UserRoleMapping, { foreignKey: 'user' });
   };
   return User;
-}
+};

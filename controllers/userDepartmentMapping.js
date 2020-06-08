@@ -1,15 +1,11 @@
 const httpStatus = require('http-status');
-const { Op } = require('sequelize')
+const models = require('../models');
+
 const {
-    compact, map, sumBy, uniq,
-  } = require('lodash');
-const moment = require('moment');
-const models = require('../models')
-const{
   User,
   Department,
   UserDepartmentMapping,
-} = models
+} = models;
 /**
  * List Active UserDepartmentMapping
  * @public
@@ -17,13 +13,13 @@ const{
 exports.listUserDepartmentMapping = async (req, res, next) => {
   try {
     const data = await UserDepartmentMapping.findAll({
-        include: [{ 
-            model: User, 
-        },{
-        model: Department
-    }]
-    
-    })
+      include: [{
+        model: User,
+      }, {
+        model: Department,
+      }],
+
+    });
     return res.json({ code: httpStatus.OK, message: 'All the active UserDepartmentMapping fetched succssfully', data });
   } catch (error) {
     return next(error);
@@ -38,8 +34,8 @@ exports.createUserDepartmentMapping = async (req, res, next) => {
   try {
     const data = await UserDepartmentMapping.create({
       user: req.body.user,
-      department: req.body.department
-    })
+      department: req.body.department,
+    });
     return res.json({ code: httpStatus.OK, message: 'UserDepartmentMapping Created succssfully', data });
   } catch (error) {
     return next(error);
@@ -54,13 +50,12 @@ exports.updateUserDepartmentMapping = async (req, res, next) => {
   try {
     const data = await UserDepartmentMapping.update({
       user: req.body.user,
-      department: req.body.department
-    },{
-      where: { id : req.query.id }
-    })
-    if(data > 0 )
-    return res.json({ code: httpStatus.OK, message: req.body.inDepartment === "" ? 'UserDepartmentMapping details Updated succssfully' : 'UserDepartmentMapping details Updated and moved succssfully' });
-    return res.json({ code: httpStatus.OK, message: 'No UserDepartmentMapping found with this ID'});
+      department: req.body.department,
+    }, {
+      where: { id: req.query.id },
+    });
+    if (data > 0) return res.json({ code: httpStatus.OK, message: req.body.inDepartment === '' ? 'UserDepartmentMapping details Updated succssfully' : 'UserDepartmentMapping details Updated and moved succssfully' });
+    return res.json({ code: httpStatus.OK, message: 'No UserDepartmentMapping found with this ID' });
   } catch (error) {
     return next(error);
   }
@@ -73,36 +68,35 @@ exports.updateUserDepartmentMapping = async (req, res, next) => {
 exports.deleteUserDepartmentMapping = async (req, res, next) => {
   try {
     const data = await UserDepartmentMapping.update({
-      archived: true
-    },{
-      where: { id : req.query.id }
-    })
-    if(data > 0)
-    return res.json({ code: httpStatus.OK, message: 'UserDepartmentMapping Deleted succssfully'});
+      archived: true,
+    }, {
+      where: { id: req.query.id },
+    });
+    if (data > 0) return res.json({ code: httpStatus.OK, message: 'UserDepartmentMapping Deleted succssfully' });
 
-    return res.json({ code: httpStatus.OK, message: 'No UserDepartmentMapping found with this ID'});
+    return res.json({ code: httpStatus.OK, message: 'No UserDepartmentMapping found with this ID' });
   } catch (error) {
     return next(error);
   }
 };
 
 /**
- * List all users in a Department 
+ * List all users in a Department
  */
 exports.listusersInDepartment = async (req, res, next) => {
   try {
     const userData = await UserDepartmentMapping.findAll({
       where: {
-        department: req.query.id
+        department: req.query.id,
       },
       include: [{
         model: User,
-        where: { archived: false }
-      },{
+        where: { archived: false },
+      }, {
         model: Department,
-        where: { archived: false }
-      }]
-    })
+        where: { archived: false },
+      }],
+    });
     return res.json({ code: httpStatus.OK, message: 'All the active Department fetched succssfully', userData });
   } catch (error) {
     return next(error);
@@ -110,21 +104,21 @@ exports.listusersInDepartment = async (req, res, next) => {
 };
 
 /**
- * List all Departments for a USER 
+ * List all Departments for a USER
  */
 exports.listAllDepartemtForUser = async (req, res, next) => {
   try {
     const userData = await UserDepartmentMapping.findAll({
       where: {
-        user: req.query.id
+        user: req.query.id,
       },
       include: [{
         model: User,
-      },{
+      }, {
         model: Department,
-        where: { archived: false }
-      }]
-    })
+        where: { archived: false },
+      }],
+    });
     return res.json({ code: httpStatus.OK, message: 'All the active Department fetched succssfully', userData });
   } catch (error) {
     return next(error);

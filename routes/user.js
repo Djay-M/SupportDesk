@@ -25,7 +25,7 @@ router
    */
   .get(controller.listUser);
 
-  router
+router
   .route('/createuser')
   /**
    * @api {post} Create User
@@ -44,7 +44,7 @@ router
    */
   .post(controller.createUser);
 
-  router
+router
   .route('/updateuser')
   /**
    * @api {post} Update User
@@ -63,7 +63,7 @@ router
    */
   .post(controller.updateUser);
 
-  router
+router
   .route('/deleteuser')
   /**
    * @api {post} Delete User
@@ -82,7 +82,7 @@ router
    */
   .post(controller.deleteUser);
 
-  router
+router
   .route('/searchuser')
   /**
    * @api {get} List Active User
@@ -101,4 +101,4 @@ router
    */
   .get(controller.searchUser);
 
-  module.exports = router;
+module.exports = router;
