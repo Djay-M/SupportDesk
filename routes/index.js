@@ -13,12 +13,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.use(User);
-router.use(Department);
-router.use(Ticket);
-router.use(Comment);
-router.use(Role);
-router.use(usrDepartment);
-router.use(userRole);
+router.use('/api/user',User);
+router.use('/api/department',Department);
+router.use('/api/ticket',Ticket);
+router.use('/api/comment',Comment);
+router.use('/api/role',Role);
+router.use('/api/usrdepartment',usrDepartment);
+router.use('/api/userrole',userRole);
 
 module.exports = router;

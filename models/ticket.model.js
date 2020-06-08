@@ -60,6 +60,9 @@ const Ticket = sequelize.define("Ticket", {
     freezeTableName: true,
 });
 Ticket.associate = function(models) {
+    Ticket.belongsTo(models.User, {foreignKey: 'assignedTo'})
+    Ticket.belongsTo(models.User, {foreignKey: 'createdby'})
+    Ticket.belongsTo(models.User, {foreignKey: 'archivedBy'})
     Ticket.belongsTo(models.Department, { foreignKey: 'inDepartment' })
     Ticket.hasMany(models.Comment, { foreignKey: 'ticketID' })
   };

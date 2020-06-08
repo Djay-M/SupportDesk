@@ -55,17 +55,26 @@ module.exports = {
           defaultValue: Sequelize.fn('NOW')
         },
         createdby: {
-          type: Sequelize.STRING,
-        },
+          type: Sequelize.UUID,
+          allowNull: true,
+          references: {
+            model: 'User',
+            key: 'id'
+          },
+      },
         archived: {
           type: Sequelize.BOOLEAN,
           allowNull: false,
           defaultValue: false,
       },
       archivedBy: {
-          type: Sequelize.STRING,
-          allowNull: true,
-      },
+        type: Sequelize.UUID,
+        allowNull: true,
+        references: {
+          model: 'User',
+          key: 'id'
+        },
+    },
   });
   },
   down: (queryInterface, Sequelize) => {

@@ -22,6 +22,9 @@ exports.listTicket = async (req, res, next) => {
         include: [{ 
             model: Comment,
             where: { archived: false }
+           },
+           { 
+            model: User,
            }]
     })
     return res.json({ code: httpStatus.OK, message: 'All the active Ticket fetched succssfully', ticket });
