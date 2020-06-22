@@ -6,6 +6,7 @@ const {
   User,
   Comment,
   Ticket,
+  Department
 } = models;
 /**
  * List Active Ticket

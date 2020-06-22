@@ -59,9 +59,8 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
   });
   Ticket.associate = (models) => {
-    Ticket.belongsTo(models.User, { foreignKey: 'assignedTo' });
+    Ticket.belongsTo(models.TicketAssigned, { foreignKey: 'assignedTo' });
     Ticket.belongsTo(models.User, { foreignKey: 'createdby' });
-    Ticket.belongsTo(models.User, { foreignKey: 'archivedBy' });
     Ticket.belongsTo(models.Department, { foreignKey: 'inDepartment' });
     Ticket.hasMany(models.Comment, { foreignKey: 'ticketID' });
   };

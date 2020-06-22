@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('UserDepartmentMapping', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('TicketAssigned', {
     id: {
       type: Sequelize.UUID,
       allowNull: false,
@@ -16,11 +16,11 @@ module.exports = {
         key: 'id',
       },
     },
-    department: {
+    ticket: {
       type: Sequelize.UUID,
       allowNull: false,
       references: {
-        model: 'Department',
+        model: 'Ticket',
         key: 'id',
       },
     },
@@ -33,5 +33,5 @@ module.exports = {
       allowNull: false,
     },
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('UserDepartmentMapping'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('TicketAssigned'),
 };

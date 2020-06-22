@@ -26,7 +26,7 @@ module.exports = {
       type: Sequelize.UUID,
       allowNull: true,
       references: {
-        model: 'User',
+        model: 'TicketAssigned',
         key: 'id',
       },
     },
@@ -69,10 +69,6 @@ module.exports = {
     archivedBy: {
       type: Sequelize.UUID,
       allowNull: true,
-      references: {
-        model: 'User',
-        key: 'id',
-      },
     },
   }),
   down: (queryInterface, Sequelize) => queryInterface.dropTable('Ticket'),

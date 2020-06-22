@@ -49,9 +49,8 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
   });
   User.associate = (models) => {
-    User.hasMany(models.Ticket, { foreignKey: 'assignedTo' });
+    User.hasMany(models.TicketAssigned, { foreignKey: 'user' });
     User.hasMany(models.Ticket, { foreignKey: 'createdby' });
-    User.hasMany(models.Ticket, { foreignKey: 'archivedBy' });
     User.hasMany(models.UserDepartmentMapping, { foreignKey: 'user' });
     User.hasMany(models.UserRoleMapping, { foreignKey: 'user' });
   };

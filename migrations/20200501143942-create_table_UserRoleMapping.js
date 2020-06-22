@@ -24,6 +24,14 @@ module.exports = {
         key: 'id',
       },
     },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
   }),
   down: (queryInterface, Sequelize) => queryInterface.dropTable('UserRoleMapping'),
 };
